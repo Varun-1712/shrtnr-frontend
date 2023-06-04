@@ -2,13 +2,16 @@ import React from "react";
 import styles from "./URLAnalyticsModal.module.css";
 import { Text, Button, CopyButton, TextInput, Select } from "@mantine/core";
 import QRCode from "react-qr-code";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
-  IconCopy,
-  IconChartArcs,
-  IconExternalLink,
-  IconTrash,
-} from "@tabler/icons-react";
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  AreaChart,
+  Area,
+  Tooltip,
+  Legend,
+} from "recharts";
+import { IconCopy, IconExternalLink, IconTrash } from "@tabler/icons-react";
 
 import { staticData } from "@/utils/staticData";
 const { urlAnalyticsModal: COMPONENT_DATA } = staticData.components;
@@ -22,34 +25,12 @@ function URLAnalyticsModal() {
   const [timeSelection, setTimeSelection] = React.useState(
     COMPONENT_DATA.inputs.timeSelection.options[0].value
   );
-
-  const data = [
-    { name: "S", uv: 348 },
-    {
-      name: "M",
-      uv: 300,
-    },
-    {
-      name: "T",
-      uv: 200,
-    },
-    {
-      name: "W",
-      uv: 278,
-    },
-    {
-      name: "T",
-      uv: 189,
-    },
-    {
-      name: "F",
-      uv: 239,
-    },
-    {
-      name: "S",
-      uv: 349,
-    },
-  ];
+  const [chartData, setChartData] = React.useState(
+    new Array(7).fill(0).map((_, index) => ({
+      label: `${index}:00`,
+      visits: Math.floor(Math.random() * 100),
+    }))
+  );
 
   return (
     <div className={styles.container}>
@@ -106,12 +87,24 @@ function URLAnalyticsModal() {
         />
       </div>
       <div className={styles.anylytics}>
-        <LineChart width={500} height={251} data={data}>
-          <Line type="monotone" dataKey="uv" stroke="#0f89f9" />
-          <CartesianGrid stroke="#ccc" />
-          <XAxis dataKey="name" />
+        <AreaChart width={500} height={251} data={chartData}>
+          <Area
+            type="monotone"
+            dataKey="visits"
+            stroke="#0f89f9"
+            fill="#0E9CFF22"
+            strokeWidth={2}
+          />
+          <CartesianGrid
+            stroke="#eee"
+            strokeDasharray="3 3"
+            strokeDashoffset={15}
+          />
+          <XAxis dataKey="lable" />
           <YAxis />
-        </LineChart>
+          <Tooltip />
+          <Legend />
+        </AreaChart>
       </div>
       <div className={styles.bottom}>
         <Button

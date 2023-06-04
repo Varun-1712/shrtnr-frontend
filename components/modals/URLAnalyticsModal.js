@@ -2,43 +2,16 @@ import React from "react";
 import styles from "./URLAnalyticsModal.module.css";
 import { Text, Button, CopyButton, TextInput, Select } from "@mantine/core";
 import QRCode from "react-qr-code";
-import { IconCopy, IconExternalLink, IconTrash } from "@tabler/icons-react";
-import { Line } from "react-chartjs-2";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis } from "recharts";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+  IconCopy,
+  IconChartArcs,
+  IconExternalLink,
+  IconTrash,
+} from "@tabler/icons-react";
 
 import { staticData } from "@/utils/staticData";
 const { urlAnalyticsModal: COMPONENT_DATA } = staticData.components;
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const chartOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: false,
-    },
-  },
-};
 
 function URLAnalyticsModal() {
   const [urlInfo, setUrlInfo] = React.useState({
@@ -50,16 +23,33 @@ function URLAnalyticsModal() {
     COMPONENT_DATA.inputs.timeSelection.options[0].value
   );
 
-  const data = {
-    labels: ["", "", "", ""],
-    datasets: [
-      {
-        label: "Visits",
-        data: [50, 48, 43, 52],
-        borderColor: "#0f89f9", // var(--primary-color)
-      },
-    ],
-  };
+  const data = [
+    { name: "S", uv: 348 },
+    {
+      name: "M",
+      uv: 300,
+    },
+    {
+      name: "T",
+      uv: 200,
+    },
+    {
+      name: "W",
+      uv: 278,
+    },
+    {
+      name: "T",
+      uv: 189,
+    },
+    {
+      name: "F",
+      uv: 239,
+    },
+    {
+      name: "S",
+      uv: 349,
+    },
+  ];
 
   return (
     <div className={styles.container}>
@@ -109,16 +99,19 @@ function URLAnalyticsModal() {
         <Select
           placeholder={COMPONENT_DATA.inputs.timeSelection.placeholder}
           data={COMPONENT_DATA.inputs.timeSelection.options}
-          variant="unstyled"
           color="primary"
-          style={{ color: "var(--primary-color)" }}
           size="md"
           value={timeSelection}
           onChange={(value) => setTimeSelection(value)}
         />
       </div>
       <div className={styles.anylytics}>
-        <Line options={chartOptions} data={data} />
+        <LineChart width={500} height={251} data={data}>
+          <Line type="monotone" dataKey="uv" stroke="#0f89f9" />
+          <CartesianGrid stroke="#ccc" />
+          <XAxis dataKey="name" />
+          <YAxis />
+        </LineChart>
       </div>
       <div className={styles.bottom}>
         <Button

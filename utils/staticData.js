@@ -2,8 +2,12 @@
 import Logo from "@/assets/Logo.svg";
 import LogoIcon from "@/assets/LogoIcon.svg";
 
+/** Icons */
+import IconGoogle from "@/assets/icons/Google.svg";
+
 /** Home Page Assets */
 import HomeHeroCover from "@/assets/home/HeroCover.svg";
+import AuthModalImage from "@/assets/home/AuthModalImage.svg";
 
 export const staticData = {
   pages: {
@@ -33,7 +37,7 @@ export const staticData = {
           {
             size: 58,
             bottom: 110,
-            right: 188
+            right: 188,
           },
         ],
         title: [
@@ -61,6 +65,101 @@ export const staticData = {
           },
         },
       },
+      authModal: {
+        titles: {
+          login: {
+            title: "Welcome Back",
+            subTitle:
+              "Continue your journey of the streamlining hiring process with us",
+          },
+          register: {
+            title: "Get Started with Us",
+            subTitle:
+              "it takes only 2 minutes to get started with us and Unleash your full potential",
+          },
+        },
+        inputs: [
+          {
+            name: "firstName",
+            label: "First Name",
+            type: "text",
+            placeholder: "Enter your first name",
+            required: true,
+            for: ["register"],
+            autoComplete: "given-name",
+          },
+          {
+            name: "lastName",
+            label: "Last Name",
+            type: "text",
+            placeholder: "Enter your last name",
+            required: true,
+            for: ["register"],
+            autoComplete: "family-name",
+          },
+          {
+            name: "email",
+            label: "Email",
+            type: "email",
+            placeholder: "Enter your email",
+            required: true,
+            for: ["register", "login"],
+            autoComplete: "email",
+          },
+          {
+            name: "password",
+            label: "Password",
+            type: "password",
+            placeholder: "Enter your password",
+            required: true,
+            for: ["register", "login"],
+            autoComplete: "current-password",
+          },
+          {
+            name: "confirmPassword",
+            label: "Confirm Password",
+            type: "password",
+            placeholder: "Confirm your password",
+            required: true,
+            for: ["register"],
+            autoComplete: "new-password",
+          },
+        ],
+        buttons: {
+          submit: {
+            label: "Continue",
+          },
+          google: {
+            label: "Continue with Google",
+          },
+        },
+        changeMode: {
+          login: {
+            label: "Don't have an account?",
+            button: {
+              label: "Get Started",
+              path: "register",
+            },
+          },
+          register: {
+            label: "Already have an account?",
+            button: {
+              label: "Login",
+              path: "login",
+            },
+          },
+        },
+        cover: {
+          src: AuthModalImage,
+          alt: "Automating hiring process",
+          width: 371,
+          height: 274,
+        },
+      },
+      modalAllowedRouteValues: {
+        login: true,
+        register: true,
+      },
     },
   },
   components: {
@@ -83,6 +182,15 @@ export const staticData = {
     logoIcon: {
       src: LogoIcon,
       alt: "Shrtnr.live",
+    },
+    icons: {
+      google: {
+        src: IconGoogle,
+        alt: "Google",
+      },
+    },
+    content: {
+      or: "or",
     },
   },
 };

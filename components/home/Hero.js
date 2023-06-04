@@ -5,6 +5,7 @@ import styles from "./Hero.module.css";
 import { IconExternalLink } from "@tabler/icons-react";
 
 import { staticData } from "@/utils/staticData";
+import { useRouter } from "next/router";
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 
 const getStyleElementProps = (element) => {
@@ -34,6 +35,13 @@ const getStyleElementProps = (element) => {
 };
 
 function Hero() {
+  const router = useRouter();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    router.push("/?modal=urlAdded");
+  };
+
   return (
     <div className={styles.container}>
       {COMPONENT_DATA.styleElements.map((element, index) => {
@@ -55,7 +63,7 @@ function Hero() {
             );
           })}
         </Title>
-        <form className={styles.searchBar}>
+        <form className={styles.searchBar} onSubmit={handleSubmit}>
           <TextInput
             placeholder={COMPONENT_DATA.searchBar.placheHolder}
             className={styles.input}
@@ -83,7 +91,7 @@ function Hero() {
           compact
           rightIcon={<IconExternalLink size="0.9rem" />}
         >
-          View your all urls{" "}
+          {COMPONENT_DATA.viewAllURLs}
         </Button>
       </div>
       <Image

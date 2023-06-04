@@ -64,6 +64,7 @@ export const staticData = {
             label: "Shrtn",
           },
         },
+        viewAllURLs: "View your all urls",
       },
       authModal: {
         titles: {
@@ -159,6 +160,8 @@ export const staticData = {
       modalAllowedRouteValues: {
         login: true,
         register: true,
+        urlAdded: true,
+        urlAnalytics: true,
       },
     },
   },
@@ -172,6 +175,14 @@ export const staticData = {
     navbar: {
       login: { name: "Login", path: "login" },
       register: { name: "Get Started", path: "register" },
+    },
+    urlAddedModal: {
+      title: "Abracadabra!",
+      subtitle:
+        "Your URL has been magically trimmed and transformed into a compact, bite-sized link. Voila! ✨💫",
+      originalURL: "Original URL",
+      getAnalytics: "Get Analytics",
+      viewAllURLs: "view your all short urls",
     },
   },
   general: {

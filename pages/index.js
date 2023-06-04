@@ -39,9 +39,9 @@ export default function Home() {
           {["register", "login"].includes(router.query.modal) ? (
             <AuthModal variant={router.query.modal} />
           ) : "urlAdded" === router.query.modal ? (
-            <URLAddedModal variant={router.query.modal} />
+            <URLAddedModal />
           ) : "urlAnalytics" === router.query.modal ? (
-            <URLAnalyticsModal variant={router.query.modal} />
+            <URLAnalyticsModal />
           ) : null}
         </Modal>
         <Hero />

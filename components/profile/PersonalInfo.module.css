@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.primaryInfo {
+  display: flex;
+  gap: 4rem;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.secInfoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 0.5rem;
+  padding: 0.35rem 0.625rem;
+  border-radius: 999px;
+  border: 1px solid #444444;
+}

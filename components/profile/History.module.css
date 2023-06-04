@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  max-width: 50rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(15, 137, 249, 0.04);
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0.7rem;
+  background-color: transparent;
+  border-radius: 1rem;
+  transition: background-color 0.1s ease-out;
+  cursor: pointer;
+}
+
+.item:hover,
+.item:active,
+.item:focus {
+  background-color: white;
+}
+
+.item:hover .itemDate,
+.item:active .itemDate,
+.item:focus .itemDate {
+  display: none;
+}
+
+.item:hover .itemAction,
+.item:active .itemAction,
+.item:focus .itemAction {
+  display: block;
+}
+
+.itemDate {
+  margin-left: auto;
+  display: block;
+}
+
+.itemAction {
+  display: none;
+  margin-left: auto;
+}
+
+.loadMore {
+  margin: 0 auto;
+}

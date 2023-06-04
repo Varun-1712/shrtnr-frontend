@@ -66,17 +66,17 @@ function URLAddedModal() {
             {COMPONENT_DATA.getAnalytics}
           </Button>
         </Link>
-        <Button
-          component="a"
-          size="md"
-          href="/profile"
-          variant="subtle"
-          color="primary"
-          compact
-          rightIcon={<IconExternalLink size="0.9rem" />}
-        >
-          {COMPONENT_DATA.viewAllURLs}
-        </Button>
+        <Link href="/profile" tabIndex={-1}>
+          <Button
+            size="md"
+            variant="subtle"
+            color="primary"
+            compact
+            rightIcon={<IconExternalLink size="0.9rem" />}
+          >
+            {COMPONENT_DATA.viewAllURLs}
+          </Button>
+        </Link>
       </div>
     </div>
   );

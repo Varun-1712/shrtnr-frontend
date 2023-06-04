@@ -3,9 +3,10 @@ import Image from "next/image";
 import { Button, TextInput, Title, Text } from "@mantine/core";
 import styles from "./Hero.module.css";
 import { IconExternalLink } from "@tabler/icons-react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { staticData } from "@/utils/staticData";
-import { useRouter } from "next/router";
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 
 const getStyleElementProps = (element) => {
@@ -82,17 +83,17 @@ function Hero() {
             {COMPONENT_DATA.searchBar.button.label}
           </Button>
         </form>
-        <Button
-          component="a"
-          size="md"
-          href="/profile"
-          variant="subtle"
-          color="primary"
-          compact
-          rightIcon={<IconExternalLink size="0.9rem" />}
-        >
-          {COMPONENT_DATA.viewAllURLs}
-        </Button>
+        <Link href="/profile" tabIndex={-1}>
+          <Button
+            size="md"
+            variant="subtle"
+            color="primary"
+            compact
+            rightIcon={<IconExternalLink size="0.9rem" />}
+          >
+            {COMPONENT_DATA.viewAllURLs}
+          </Button>
+        </Link>
       </div>
       <Image
         src={COMPONENT_DATA.cover.src}

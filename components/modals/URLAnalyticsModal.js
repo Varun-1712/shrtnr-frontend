@@ -12,6 +12,7 @@ import {
   Legend,
 } from "recharts";
 import { IconCopy, IconExternalLink, IconTrash } from "@tabler/icons-react";
+import Link from "next/link";
 
 import { staticData } from "@/utils/staticData";
 const { urlAnalyticsModal: COMPONENT_DATA } = staticData.components;
@@ -115,20 +116,17 @@ function URLAnalyticsModal() {
         >
           {COMPONENT_DATA.delete}
         </Button>
-        <Button
-          component="a"
-          size="md"
-          href="/profile"
-          variant="subtle"
-          color="primary"
-          compact
-          leftIcon={<IconExternalLink size="0.9rem" />}
-          style={{
-            fontWeight: 500,
-          }}
-        >
-          {COMPONENT_DATA.viewAllURLs}
-        </Button>
+        <Link href="/profile" tabIndex={-1}>
+          <Button
+            size="md"
+            variant="subtle"
+            color="primary"
+            compact
+            rightIcon={<IconExternalLink size="0.9rem" />}
+          >
+            {COMPONENT_DATA.viewAllURLs}
+          </Button>
+        </Link>
       </div>
     </div>
   );

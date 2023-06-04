@@ -9,6 +9,10 @@ import IconGoogle from "@/assets/icons/Google.svg";
 import HomeHeroCover from "@/assets/home/HeroCover.svg";
 import AuthModalImage from "@/assets/home/AuthModalImage.svg";
 
+/** Profile Page Auth Icons */
+import IconGoogleAuth from "@/assets/profile/authIcons/Google.svg";
+import IconPasswordAuth from "@/assets/profile/authIcons/Password.svg";
+
 export const staticData = {
   pages: {
     index: {
@@ -162,6 +166,44 @@ export const staticData = {
         register: true,
         urlAdded: true,
         urlAnalytics: true,
+      },
+    },
+    profile: {
+      modalAllowedRouteValues: {
+        urlAnalytics: true,
+      },
+      personalInfo: {
+        title: "Your Profile",
+        primaryFields: [
+          {
+            label: "Name",
+            accessor: "name",
+          },
+          {
+            label: "Email",
+            accessor: "email",
+          },
+        ],
+        secondaryFields: [
+          {
+            label: "Login Method",
+            accessor: "signedUpWith",
+            valueOptions: {
+              google: {
+                label: "Google Authentication",
+                icon: IconGoogleAuth,
+              },
+              email: {
+                label: "Password Authentication",
+                icon: IconPasswordAuth,
+              },
+            },
+          },
+        ],
+      },
+      history: {
+        title: "Your URLs 📄 ",
+        loadMore: "Load More",
       },
     },
   },

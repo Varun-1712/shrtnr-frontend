@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  padding: 1rem max(1.5rem, calc((100vw - var(--max-width)) / 2));
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons {
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  list-style: none;
+}
+
+.logo {
+  display: block;
+}
+.logoIcon {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+  .logoIcon {
+    display: block;
+  }
+}

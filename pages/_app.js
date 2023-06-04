@@ -1,14 +1,106 @@
 import "@/styles/globals.css";
 import { MantineProvider } from "@mantine/core";
-import { Manrope } from "next/font/google";
-// import Header from "@/components/general/Header";
-// import Footer from "@/components/general/Footer";
+import localFont from "next/font/local";
+import Header from "@/components/general/Header";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import config from "@/utils/config";
 import Head from "next/head";
 import { RouterTransition } from "@/components/RouterTransition";
 
-const manropeFont = Manrope({ subsets: ["latin"] });
+const gilroyFont = localFont({
+  src: [
+    {
+      path: "./Gilroy-Thin.ttf",
+      style: "normal",
+      weight: "100",
+    },
+    {
+      path: "./Gilroy-ThinItalic.ttf",
+      style: "italic",
+      weight: "100",
+    },
+    {
+      path: "./Gilroy-UltraLight.ttf",
+      style: "normal",
+      weight: "200",
+    },
+    {
+      path: "./Gilroy-UltraLightItalic.ttf",
+      style: "italic",
+      weight: "200",
+    },
+    {
+      path: "./Gilroy-Light.ttf",
+      style: "normal",
+      weight: "300",
+    },
+    {
+      path: "./Gilroy-LightItalic.ttf",
+      style: "italic",
+      weight: "300",
+    },
+    {
+      path: "./Gilroy-Regular.ttf",
+      style: "normal",
+      weight: "400",
+    },
+    {
+      path: "./Gilroy-RegularItalic.ttf",
+      style: "italic",
+      weight: "400",
+    },
+    {
+      path: "./Gilroy-Medium.ttf",
+      style: "normal",
+      weight: "500",
+    },
+    {
+      path: "./Gilroy-MediumItalic.ttf",
+      style: "italic",
+      weight: "500",
+    },
+    {
+      path: "./Gilroy-SemiBold.ttf",
+      style: "normal",
+      weight: "600",
+    },
+    {
+      path: "./Gilroy-SemiBoldItalic.ttf",
+      style: "italic",
+      weight: "600",
+    },
+    {
+      path: "./Gilroy-Bold.ttf",
+      style: "normal",
+      weight: "700",
+    },
+    {
+      path: "./Gilroy-BoldItalic.ttf",
+      style: "italic",
+      weight: "700",
+    },
+    {
+      path: "./Gilroy-ExtraBold.ttf",
+      style: "normal",
+      weight: "800",
+    },
+    {
+      path: "./Gilroy-ExtraBoldItalic.ttf",
+      style: "italic",
+      weight: "800",
+    },
+    {
+      path: "./Gilroy-Black.ttf",
+      style: "normal",
+      weight: "900",
+    },
+    {
+      path: "./Gilroy-BlackItalic.ttf",
+      style: "italic",
+      weight: "900",
+    },
+  ],
+});
 
 export default function MyApp({ Component, pageProps }) {
   return (
@@ -22,7 +114,7 @@ export default function MyApp({ Component, pageProps }) {
       </Head>
       <style jsx global>{`
         * {
-          font-family: ${manropeFont.style.fontFamily};
+          font-family: ${gilroyFont.style.fontFamily};
         }
       `}</style>
       <GoogleOAuthProvider clientId={config.GOOGLE_CLIENT_ID}>
@@ -57,6 +149,18 @@ export default function MyApp({ Component, pageProps }) {
                 "#000001",
                 "#000107",
               ],
+              ternary: [
+                "#EDEBE9",
+                "#D6D1C9",
+                "#C8BBA8",
+                "#C5AA80",
+                "#D49E4C",
+                "#FF9900",
+                "#B37C2B",
+                "#84683D",
+                "#675841",
+                "#534B3F",
+              ],
               black: [
                 "#000000",
                 "#111111",
@@ -72,10 +176,10 @@ export default function MyApp({ Component, pageProps }) {
             },
             primaryShade: 5,
             primaryColor: "primary",
-            fontFamily: manropeFont.style.fontFamily,
+            fontFamily: gilroyFont.style.fontFamily,
             defaultRadius: "var(--general-box-border-radius)",
             headings: {
-              fontFamily: manropeFont.style.fontFamily,
+              fontFamily: gilroyFont.style.fontFamily,
               sizes: {
                 h1: { fontSize: "var(--h1)" },
                 h2: { fontSize: "var(--h2)" },
@@ -96,11 +200,10 @@ export default function MyApp({ Component, pageProps }) {
           }}
         >
           <RouterTransition />
-          {/* <Header /> */}
+          <Header />
           <Component {...pageProps} />
-          {/* <Footer /> */}
         </MantineProvider>
       </GoogleOAuthProvider>
-</>
+    </>
   );
 }

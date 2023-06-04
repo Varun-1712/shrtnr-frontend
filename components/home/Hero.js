@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Button, TextInput, Title, Text } from "@mantine/core";
 import styles from "./Hero.module.css";
+import { IconExternalLink } from "@tabler/icons-react";
 
 import { staticData } from "@/utils/staticData";
 const { hero: COMPONENT_DATA } = staticData.pages.index;
@@ -15,11 +16,18 @@ const getStyleElementProps = (element) => {
     width: size,
   };
 
-  ["top", "right", "bottom", "left"].forEach((side) => {
+  ["right", "left"].forEach((side) => {
     if (element[side])
       stylesToReturn[side] = `calc(${element[side] / (2 * 16)}rem + ${
         element[side] / (1280 * 2)
       } * 100vw)`;
+  });
+
+  ["top", "bottom"].forEach((side) => {
+    if (element[side])
+      stylesToReturn[side] = `calc(${element[side] / (2 * 16)}rem + ${
+        element[side] / (832 * 2)
+      } * 100vh)`;
   });
 
   return stylesToReturn;
@@ -53,8 +61,10 @@ function Hero() {
             className={styles.input}
             variant="unstyled"
             size="lg"
+            type="url"
           />
           <Button
+            type="submit"
             color="ternary"
             variant="filled"
             size="md"
@@ -64,6 +74,17 @@ function Hero() {
             {COMPONENT_DATA.searchBar.button.label}
           </Button>
         </form>
+        <Button
+          component="a"
+          size="md"
+          href="/profile"
+          variant="subtle"
+          color="primary"
+          compact
+          rightIcon={<IconExternalLink size="0.9rem" />}
+        >
+          View your all urls{" "}
+        </Button>
       </div>
       <Image
         src={COMPONENT_DATA.cover.src}

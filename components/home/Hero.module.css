@@ -15,18 +15,20 @@
   position: absolute;
   border: 1px solid var(--ternary-color);
   border-radius: 1.375rem;
+  z-index: -1;
 }
 
 .top {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 0.8rem;
   width: 100%;
   align-items: center;
 }
 
 .title {
   max-width: 27rem;
+  margin-bottom: 0.5rem;
 }
 
 .searchBar {
@@ -46,4 +48,10 @@
 
 .input {
   width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .styleElement {
+    display: none;
+  }
 }

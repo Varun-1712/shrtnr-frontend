@@ -3,6 +3,7 @@ import styles from "./URLAddedModal.module.css";
 import { Title, Text, Button, CopyButton } from "@mantine/core";
 import QRCode from "react-qr-code";
 import { IconCopy, IconChartArcs, IconExternalLink } from "@tabler/icons-react";
+import Link from "next/link";
 
 import { staticData } from "@/utils/staticData";
 const { urlAddedModal: COMPONENT_DATA } = staticData.components;
@@ -53,9 +54,18 @@ function URLAddedModal() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <Button color="blue" rightIcon={<IconChartArcs />} size="md">
-          {COMPONENT_DATA.getAnalytics}
-        </Button>
+        <Link
+          href={{
+            query: {
+              modal: "urlAnalytics",
+            },
+          }}
+          tabIndex={-1}
+        >
+          <Button color="primary" rightIcon={<IconChartArcs />} size="md">
+            {COMPONENT_DATA.getAnalytics}
+          </Button>
+        </Link>
         <Button
           component="a"
           size="md"

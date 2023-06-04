@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import { Modal } from "@mantine/core";
 import AuthModal from "@/components/home/AuthModal";
 import URLAddedModal from "@/components/modals/URLAddedModal";
+import URLAnalyticsModal from "@/components/modals/URLAnalyticsModal";
 import { useRouter } from "next/router";
 
 import { staticData } from "@/utils/staticData";
@@ -37,8 +38,10 @@ export default function Home() {
         >
           {["register", "login"].includes(router.query.modal) ? (
             <AuthModal variant={router.query.modal} />
-          ) : ["urlAdded", "urlAnalytics"].includes(router.query.modal) ? (
+          ) : "urlAdded" === router.query.modal ? (
             <URLAddedModal variant={router.query.modal} />
+          ) : "urlAnalytics" === router.query.modal ? (
+            <URLAnalyticsModal variant={router.query.modal} />
           ) : null}
         </Modal>
         <Hero />

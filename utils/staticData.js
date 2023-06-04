@@ -184,6 +184,38 @@ export const staticData = {
       getAnalytics: "Get Analytics",
       viewAllURLs: "view your all short urls",
     },
+    urlAnalyticsModal: {
+      originalURL: "Original URL",
+      inputs: {
+        name: {
+          label: "Name",
+        },
+        timeSelection: {
+          placeholder: "Time Selection",
+          options: [
+            {
+              label: "Last 24 Hours",
+              value: "last24Hours",
+            },
+            {
+              label: "Last 7 Days",
+              value: "last7Days",
+            },
+            {
+              label: "Last 30 Days",
+              value: "last30Days",
+            },
+            {
+              label: "All Time",
+              value: "allTime",
+            },
+          ],
+        },
+      },
+      analytics: "Analytics",
+      delete: "Delete",
+      viewAllURLs: "view your all short urls",
+    },
   },
   general: {
     logo: {

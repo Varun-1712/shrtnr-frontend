@@ -6,6 +6,12 @@ import styles from "./AuthModal.module.css";
 import { staticData } from "@/utils/staticData";
 import Link from "next/link";
 import { useGoogleLogin } from "@react-oauth/google";
+import {
+  googleLoginUser,
+  loginUser,
+  signupUser,
+} from "@/services/auth.service";
+import { useCookies } from "react-cookie";
 
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -18,6 +24,7 @@ const InputComponent = {
 };
 
 function AuthModal({ variant }) {
+  const [, setCookie] = useCookies();
   const [currentVariant, setCurrentVariant] = React.useState(variant);
   const mForm = useForm({
     initialValues: {
@@ -53,12 +60,41 @@ function AuthModal({ variant }) {
     }
   }, [variant]);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log("values", values);
+    if (currentVariant === "login") {
+      try {
+        const response = await loginUser(values);
+        setCookie("token", response);
+      } catch (error) {
+        const { errors } = error.response.data;
+        // Toast Error
+      }
+    }
+    if (currentVariant === "register") {
+      try {
+        const response = await signupUser(values);
+        setCookie("token", response);
+      } catch (error) {
+        const { errors } = error.response.data;
+        // Toast Error
+      }
+    }
   };
 
   const handleGoogleAuth = useGoogleLogin({
-    onSuccess: (codeResponse) => console.log("CODE", codeResponse.code),
+    onSuccess: async (codeResponse) => {
+      try {
+        const response = await googleLoginUser({
+          code: codeResponse.code,
+        });
+        console.log("response", response);
+        setCookie("token", response);
+      } catch (error) {
+        const { errors } = error.response.data;
+        // Toast Error
+      }
+    },
     onError: () => console.log("Google login failed", "error"),
     flow: "auth-code",
   });

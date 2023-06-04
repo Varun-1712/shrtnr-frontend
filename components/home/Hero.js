@@ -7,6 +7,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { staticData } from "@/utils/staticData";
+import { useRouter } from "next/router";
+import { addUrl } from "@/services/url.service";
+import { useCookies } from "react-cookie";
 const { hero: COMPONENT_DATA } = staticData.pages.index;
 
 const getStyleElementProps = (element) => {
@@ -35,12 +38,32 @@ const getStyleElementProps = (element) => {
   return stylesToReturn;
 };
 
-function Hero() {
+function Hero({ user }) {
   const router = useRouter();
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [userData, setUserData] = React.useState(user);
+  const [url, setUrl] = React.useState("");
 
-    router.push("/?modal=urlAdded");
+  const [cookies, setCookie] = useCookies();
+
+  React.useEffect(() => {
+    setUserData(user);
+  }, [user]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = cookies.token;
+    if (token) {
+      try {
+        const response = await addUrl(token, url);
+        const id = response._id;
+        router.push(`/?modal=urlAdded&id=${id}`);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("User not logged in");
+      router.push("/?modal=login");
+    }
   };
 
   return (
@@ -71,6 +94,9 @@ function Hero() {
             variant="unstyled"
             size="lg"
             type="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
           />
           <Button
             type="submit"

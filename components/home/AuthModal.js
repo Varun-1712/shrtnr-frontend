@@ -12,6 +12,7 @@ import {
   signupUser,
 } from "@/services/auth.service";
 import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 
 const { authModal: COMPONENT_DATA } = staticData.pages.index;
 const { content: GENERAL_CONTENT } = staticData.general;
@@ -24,6 +25,7 @@ const InputComponent = {
 };
 
 function AuthModal({ variant }) {
+  const router = useRouter();
   const [, setCookie] = useCookies();
   const [currentVariant, setCurrentVariant] = React.useState(variant);
   const mForm = useForm({
@@ -66,6 +68,7 @@ function AuthModal({ variant }) {
       try {
         const response = await loginUser(values);
         setCookie("token", response);
+        router.push("/");
       } catch (error) {
         const { errors } = error.response.data;
         // Toast Error
@@ -75,6 +78,7 @@ function AuthModal({ variant }) {
       try {
         const response = await signupUser(values);
         setCookie("token", response);
+        router.push("/");
       } catch (error) {
         const { errors } = error.response.data;
         // Toast Error

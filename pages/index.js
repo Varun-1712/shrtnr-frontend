@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { staticData } from "@/utils/staticData";
 const PAGE_DATA = staticData.pages.index;
 
-export default function Home() {
+export default function Home({ user }) {
   const router = useRouter();
 
   const handleCloseModal = () => {
@@ -44,7 +44,7 @@ export default function Home() {
             <URLAnalyticsModal />
           ) : null}
         </Modal>
-        <Hero />
+        <Hero user={user} />
       </main>
     </>
   );

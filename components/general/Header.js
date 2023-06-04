@@ -5,13 +5,11 @@ import { Button, Avatar } from "@mantine/core";
 import { staticData } from "@/utils/staticData";
 
 import styles from "./Header.module.css";
-import { useCookies } from "react-cookie";
-import { getUserData } from "@/services/user.service";
 
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
 
-function Header() {
+function Header({ user }) {
   /** TODO: Fetched Data */
   // const userData = {
   //   _id: "random",
@@ -19,20 +17,10 @@ function Header() {
   //   lastName: "Varsani",
   //   email: "zairestanton@gmail.com",
   // };
-  const [cookies, setCookies] = useCookies();
-  const [userData, setUserData] = useState(null);
-
+  const [userData, setUserData] = useState(user);
   useEffect(() => {
-    const token = cookies.token;
-    if (token) {
-      async function getUser() {
-        const data = await getUserData(token);
-        setUserData(data);
-      }
-      getUser();
-    }
-  }, []);
-
+    setUserData(user);
+  }, [user]);
   return (
     <nav className={styles.container}>
       <Link href="/">

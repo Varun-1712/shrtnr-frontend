@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Avatar } from "@mantine/core";
 import { staticData } from "@/utils/staticData";
 
 import styles from "./Header.module.css";
+import { useCookies } from "react-cookie";
+import { getUserData } from "@/services/user.service";
 
 const { navbar: COMPONENT_DATA } = staticData.components;
 const generalData = staticData.general;
@@ -13,11 +15,23 @@ function Header() {
   /** TODO: Fetched Data */
   // const userData = {
   //   _id: "random",
-  //   fName: "Raj",
-  //   lName: "Varsani",
+  //   firstName: "Raj",
+  //   lastName: "Varsani",
   //   email: "zairestanton@gmail.com",
   // };
+  const [cookies, setCookies] = useCookies();
   const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = cookies.token;
+    if (token) {
+      async function getUser() {
+        const data = await getUserData(token);
+        setUserData(data);
+      }
+      getUser();
+    }
+  }, []);
 
   return (
     <nav className={styles.container}>
@@ -37,12 +51,12 @@ function Header() {
       {userData ? (
         <Avatar
           src={userData.image}
-          alt={userData.fName + " " + userData.lName}
+          alt={userData.firstName + " " + userData.lastName}
           color="secondary"
           component={Link}
           href={"/profile"}
         >
-          {userData.image ? null : userData.fName[0] + userData.lName[0]}
+          {userData.image ? null : userData.firstName[0] + userData.lastName[0]}
         </Avatar>
       ) : (
         <ul className={styles.buttons}>

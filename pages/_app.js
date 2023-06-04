@@ -6,6 +6,9 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import config from "@/utils/config";
 import Head from "next/head";
 import { RouterTransition } from "@/components/RouterTransition";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/services/user.service";
+import { useCookies } from "react-cookie";
 
 const gilroyFont = localFont({
   src: [
@@ -103,6 +106,24 @@ const gilroyFont = localFont({
 });
 
 export default function MyApp({ Component, pageProps }) {
+  const [cookies, setCookies] = useCookies();
+  const [user, setUserData] = useState(null);
+
+  useEffect(() => {
+    const token = cookies.token;
+    if (token) {
+      async function getUser() {
+        try {
+          const data = await getUserData(token);
+          setUserData(data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      getUser();
+    }
+  }, [cookies]);
+
   return (
     <>
       <Head>
@@ -200,8 +221,8 @@ export default function MyApp({ Component, pageProps }) {
           }}
         >
           <RouterTransition />
-          <Header />
-          <Component {...pageProps} />
+          <Header user={user} />
+          <Component {...pageProps} user={user} />
         </MantineProvider>
       </GoogleOAuthProvider>
     </>

@@ -1,5 +1,5 @@
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-export const LIVE_URL = "http://shrtnr.live/";
+export const LIVE_URL = process.env.NEXT_PUBLIC_LIVE_URL;
 export const AUTH_URL = BASE_URL + "auth/";
 export const USER_URL = BASE_URL + "user/";
 export const URL_URL = BASE_URL + "url/";
@@ -14,5 +14,6 @@ export const GET_URL = URL_URL + "get";
 export const DELETE_URL = URL_URL + "delete";
 export const UPDATE_URL = URL_URL + "update";
 export const GET_ALL_URLS = URL_URL + "getall";
+export const REDIRECT_URL = URL_URL + "redirect";
 
 export const GET_ANAYLTICS = URL_URL + "get-analytics";

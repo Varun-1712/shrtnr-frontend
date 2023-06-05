@@ -87,6 +87,7 @@ function URLAddedModal({ user }) {
           href={{
             query: {
               modal: "urlAnalytics",
+              id: urlInfo.id,
             },
           }}
           tabIndex={-1}

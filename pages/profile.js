@@ -45,3 +45,18 @@ export default function Profile({ user, updateUser }) {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  if (!context.req.headers.cookie) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

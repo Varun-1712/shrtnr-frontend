@@ -63,7 +63,6 @@ function AuthModal({ variant }) {
   }, [variant]);
 
   const handleSubmit = async (values) => {
-    console.log("values", values);
     if (currentVariant === "login") {
       try {
         const response = await loginUser(values);
@@ -92,8 +91,8 @@ function AuthModal({ variant }) {
         const response = await googleLoginUser({
           code: codeResponse.code,
         });
-        console.log("response", response);
         setCookie("token", response);
+        router.push("/");
       } catch (error) {
         const { errors } = error.response.data;
         // Toast Error

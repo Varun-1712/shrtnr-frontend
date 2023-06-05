@@ -114,7 +114,7 @@ export default function MyApp({ Component, pageProps }) {
     if (token && !user) {
       setUser(token);
     }
-  }, []);
+  }, [cookies.token]);
 
   const setUser = async (token) => {
     try {

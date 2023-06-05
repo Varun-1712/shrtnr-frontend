@@ -108,7 +108,13 @@ function Hero({ user }) {
             {COMPONENT_DATA.searchBar.button.label}
           </Button>
         </form>
-        <Link href="/profile" tabIndex={-1}>
+        <Link
+          href={{
+            pathname: user ? "/profile" : "/",
+            query: user ? {} : { modal: "login" },
+          }}
+          tabIndex={-1}
+        >
           <Button
             size="md"
             variant="subtle"
@@ -124,6 +130,7 @@ function Hero({ user }) {
         src={COMPONENT_DATA.cover.src}
         alt={COMPONENT_DATA.cover.alt}
         className={styles.cover}
+        priority
       />
     </div>
   );

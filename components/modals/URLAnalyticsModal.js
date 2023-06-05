@@ -33,12 +33,7 @@ function URLAnalyticsModal({ user }) {
   const [timeSelection, setTimeSelection] = React.useState(
     COMPONENT_DATA.inputs.timeSelection.options[0].value
   );
-  const [chartData, setChartData] = React.useState(
-    new Array(7).fill(0).map((_, index) => ({
-      label: `${index}:00`,
-      visits: Math.floor(Math.random() * 100),
-    }))
-  );
+  const [chartData, setChartData] = React.useState([]);
   const updateUrlName = async (name) => {
     try {
       if (urlInfo.name === "" && urlInfo.name === name) return;

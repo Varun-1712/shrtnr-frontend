@@ -72,7 +72,7 @@ export const deleteUrl = async (accessToken, id) => {
   }
 };
 
-export const getAnalytics = async (accessToken, id, window) => {
+export const getAnalytics = async (accessToken, id, window, interval) => {
   try {
     const { data } = await axios.get(GET_ANAYLTICS, {
       headers: {
@@ -82,6 +82,7 @@ export const getAnalytics = async (accessToken, id, window) => {
         id,
         start: window.start,
         end: window.end,
+        interval,
       },
     });
     return data;

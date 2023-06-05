@@ -25,7 +25,7 @@ function URLAnalyticsModal({ user }) {
   const router = useRouter();
   const [cookies] = useCookies();
   const [urlInfo, setUrlInfo] = React.useState({
-    id: "123",
+    id: null,
     url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch",
     shortUrl: "https://Shrtnr.live/random",
     name: "Untitled 8",
@@ -39,7 +39,17 @@ function URLAnalyticsModal({ user }) {
       visits: Math.floor(Math.random() * 100),
     }))
   );
-
+  const updateUrlName = async (name) => {
+    try {
+      if (urlInfo.name === "" && urlInfo.name === name) return;
+      await updateUrl(cookies.token, {
+        ...urlInfo,
+        name: name,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     if (!user) return;
     const id = new URL(window.location.href).searchParams.get("id");
@@ -53,6 +63,8 @@ function URLAnalyticsModal({ user }) {
     });
   }, []);
   useEffect(() => {
+    if (!user) return;
+    if (!urlInfo.id) return;
     const buckets = {
       last24Hours: 1,
       last7Days: 7,
@@ -71,7 +83,12 @@ function URLAnalyticsModal({ user }) {
     }
     async function fetchAnalytics() {
       try {
-        const analytics = await getAnalytics(cookies.token, urlInfo.id, window);
+        const analytics = await getAnalytics(
+          cookies.token,
+          urlInfo.id,
+          window,
+          timeSelection
+        );
         if (analytics.length === 0) {
           setChartData([
             {
@@ -92,7 +109,7 @@ function URLAnalyticsModal({ user }) {
       }
     }
     fetchAnalytics();
-  }, [timeSelection, urlInfo]);
+  }, [timeSelection, user]);
 
   return (
     <div className={styles.container}>
@@ -101,12 +118,9 @@ function URLAnalyticsModal({ user }) {
           label={COMPONENT_DATA.inputs.name.label}
           value={urlInfo.name}
           onChange={async (e) => {
-            setUrlInfo({ ...urlInfo, name: e.target.value });
-            try {
-              await updateUrl(cookies.token, urlInfo);
-            } catch (err) {
-              console.log(err);
-            }
+            const name = e.currentTarget.value;
+            updateUrlName(name);
+            setUrlInfo({ ...urlInfo, name: e.currentTarget.value });
           }}
           size="md"
           compact

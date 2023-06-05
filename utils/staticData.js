@@ -262,11 +262,11 @@ export const staticData = {
   general: {
     logo: {
       src: Logo,
-      alt: "Shrtnr.live",
+      alt: "Shrtnr.tech",
     },
     logoIcon: {
       src: LogoIcon,
-      alt: "Shrtnr.live",
+      alt: "Shrtnr.tech",
     },
     icons: {
       google: {

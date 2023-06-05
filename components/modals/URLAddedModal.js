@@ -38,9 +38,9 @@ function URLAddedModal({ user }) {
   }, []);
 
   const [urlInfo, setUrlInfo] = React.useState({
-    id: "1234567890",
-    url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch",
-    shortUrl: "https://Shrtnr.live/random",
+    id: "",
+    url: "",
+    shortUrl: "",
   });
   return (
     <div className={styles.container}>

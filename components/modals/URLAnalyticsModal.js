@@ -26,9 +26,9 @@ function URLAnalyticsModal({ user }) {
   const [cookies] = useCookies();
   const [urlInfo, setUrlInfo] = React.useState({
     id: null,
-    url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch",
-    shortUrl: "https://Shrtnr.live/random",
-    name: "Untitled 8",
+    url: "",
+    shortUrl: "",
+    name: "",
   });
   const [timeSelection, setTimeSelection] = React.useState(
     COMPONENT_DATA.inputs.timeSelection.options[0].value
@@ -48,7 +48,14 @@ function URLAnalyticsModal({ user }) {
   useEffect(() => {
     if (!user) return;
     const id = new URL(window.location.href).searchParams.get("id");
+    if (!id) {
+      router.push({ pathname: "", query: {} });
+      return;
+    }
     const url = user.urls.filter((item) => item._id === id)[0];
+    if (!url) {
+      return;
+    }
     setUrlInfo({
       id: url._id,
       url: url.url,
@@ -56,7 +63,7 @@ function URLAnalyticsModal({ user }) {
       name: url.name,
       createdAt: url.createdAt,
     });
-  }, []);
+  }, [user]);
   useEffect(() => {
     if (!user) return;
     if (!urlInfo.id) return;
@@ -104,7 +111,7 @@ function URLAnalyticsModal({ user }) {
       }
     }
     fetchAnalytics();
-  }, [timeSelection, user]);
+  }, [timeSelection, user, urlInfo]);
 
   return (
     <div className={styles.container}>
@@ -118,7 +125,6 @@ function URLAnalyticsModal({ user }) {
             setUrlInfo({ ...urlInfo, name: e.currentTarget.value });
           }}
           size="md"
-          compact
         />
       </div>
       <div className={styles.info}>

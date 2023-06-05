@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./PersonalInfo.module.css";
 import { Title, Text } from "@mantine/core";
 
 import { staticData } from "@/utils/staticData";
 import Image from "next/image";
+import { useRouter } from "next/router";
 const { personalInfo: COMPONENT_DATA } = staticData.pages.profile;
 
-function PersonalInfo() {
+function PersonalInfo({ user }) {
+  const router = useRouter();
   const [userData, setUserData] = React.useState({
-    name: "Chad Schmeler",
-    email: "johndoe@test.com",
+    name: "",
+    email: "",
     signedUpWith: "google",
   });
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+    setUserData({
+      name: user.firstName + " " + user.lastName,
+      email: user.email,
+      signedUpWith: user.signedUpWith,
+    });
+  }, [user]);
+
   return (
     <div className={styles.container}>
       <Title size={32}>{COMPONENT_DATA.title}</Title>

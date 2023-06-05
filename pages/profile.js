@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { staticData } from "@/utils/staticData";
 const PAGE_DATA = staticData.pages.profile;
 
-export default function Profile() {
+export default function Profile({ user }) {
   const router = useRouter();
 
   const handleCloseModal = () => {
@@ -33,10 +33,10 @@ export default function Profile() {
           withCloseButton={false}
           centered
         >
-          <URLAnalyticsModal variant={router.query.modal} />
+          <URLAnalyticsModal user={user} variant={router.query.modal} />
         </Modal>
-        <PersonalInfo />
-        <History />
+        <PersonalInfo user={user} />
+        <History user={user} />
       </main>
     </>
   );

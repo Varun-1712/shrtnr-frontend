@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Title, Text, ActionIcon, Button } from "@mantine/core";
 import styles from "./History.module.css";
 
@@ -10,11 +10,15 @@ const { history: COMPONENT_DATA } = staticData.pages.profile;
 const TMP_SEARCH_HISTORY = new Array(5).fill(0).map(() => ({
   name: "Chad Schmeler",
   url: "Senior Developer",
-  timestamp: "6/5/2023, 3:39:48 AM",
+  timestamp: new Date("6/5/2023, 3:39:48 AM").toLocaleString(),
 }));
 
-function History() {
-  const [searchHistory] = useState(TMP_SEARCH_HISTORY);
+function History({ user }) {
+  const [searchHistory, setSearchHistory] = useState([]);
+  useEffect(() => {
+    if (!user) return;
+    setSearchHistory(user.urls);
+  }, [user]);
 
   return (
     <div className={styles.container}>
@@ -30,6 +34,7 @@ function History() {
             href={{
               query: {
                 modal: "urlAnalytics",
+                id: item._id,
               },
             }}
           >
@@ -43,7 +48,7 @@ function History() {
             </div>
             <div className={styles.itemDate}>
               <Text size="sm" weight={500} color="black.8">
-                {new Date(item.timestamp).toLocaleString()}
+                {new Date(item.createdAt).toLocaleString()}
               </Text>
             </div>
             <div className={styles.itemAction}>
@@ -56,7 +61,8 @@ function History() {
           </Link>
         ))}
       </div>
-      <Button
+      {/* WILL ADD IF HAVE TIME */}
+      {/* <Button
         size="md"
         variant="subtle"
         color="primary"
@@ -65,7 +71,7 @@ function History() {
         className={styles.loadMore}
       >
         {COMPONENT_DATA.loadMore}
-      </Button>
+      </Button> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./URLAnalyticsModal.module.css";
 import { Text, Button, CopyButton, TextInput, Select } from "@mantine/core";
 import QRCode from "react-qr-code";
@@ -15,9 +15,10 @@ import { IconCopy, IconExternalLink, IconTrash } from "@tabler/icons-react";
 import Link from "next/link";
 
 import { staticData } from "@/utils/staticData";
+import { LIVE_URL } from "@/utils/api";
 const { urlAnalyticsModal: COMPONENT_DATA } = staticData.components;
 
-function URLAnalyticsModal() {
+function URLAnalyticsModal({ user }) {
   const [urlInfo, setUrlInfo] = React.useState({
     url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch",
     shortUrl: "https://Shrtnr.live/random",
@@ -33,13 +34,27 @@ function URLAnalyticsModal() {
     }))
   );
 
+  useEffect(() => {
+    if (!user) return;
+    const id = new URL(window.location.href).searchParams.get("id");
+    const url = user.urls.filter((item) => item._id === id)[0];
+    setUrlInfo({
+      url: url.url,
+      shortUrl: LIVE_URL + url.shorturl,
+      name: url.name,
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <div>
         <TextInput
           label={COMPONENT_DATA.inputs.name.label}
           value={urlInfo.name}
-          onChange={(e) => setUrlInfo({ ...urlInfo, name: e.target.value })}
+          onChange={(e) => {
+            setUrlInfo({ ...urlInfo, name: e.target.value });
+            // update name in db
+          }}
           size="md"
           compact
         />

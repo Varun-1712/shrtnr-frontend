@@ -4,7 +4,6 @@ import { Button, TextInput, Title, Text } from "@mantine/core";
 import styles from "./Hero.module.css";
 import { IconExternalLink } from "@tabler/icons-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 import { staticData } from "@/utils/staticData";
 import { useRouter } from "next/router";

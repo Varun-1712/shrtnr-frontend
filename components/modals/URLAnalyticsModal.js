@@ -16,10 +16,16 @@ import Link from "next/link";
 
 import { staticData } from "@/utils/staticData";
 import { LIVE_URL } from "@/utils/api";
+import { deleteUrl, getAnalytics, updateUrl } from "@/services/url.service";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 const { urlAnalyticsModal: COMPONENT_DATA } = staticData.components;
 
 function URLAnalyticsModal({ user }) {
+  const router = useRouter();
+  const [cookies] = useCookies();
   const [urlInfo, setUrlInfo] = React.useState({
+    id: "123",
     url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch",
     shortUrl: "https://Shrtnr.live/random",
     name: "Untitled 8",
@@ -39,11 +45,54 @@ function URLAnalyticsModal({ user }) {
     const id = new URL(window.location.href).searchParams.get("id");
     const url = user.urls.filter((item) => item._id === id)[0];
     setUrlInfo({
+      id: url._id,
       url: url.url,
       shortUrl: LIVE_URL + url.shorturl,
       name: url.name,
+      createdAt: url.createdAt,
     });
   }, []);
+  useEffect(() => {
+    const buckets = {
+      last24Hours: 1,
+      last7Days: 7,
+      last30Days: 30,
+      allTime: 0,
+    };
+
+    const window = {
+      start: new Date(
+        new Date() - buckets[timeSelection] * 24 * 60 * 60 * 1000
+      ).toISOString(),
+      end: new Date().toISOString(),
+    };
+    if (buckets[timeSelection] === 0) {
+      window.start = urlInfo.createdAt;
+    }
+    async function fetchAnalytics() {
+      try {
+        const analytics = await getAnalytics(cookies.token, urlInfo.id, window);
+        if (analytics.length === 0) {
+          setChartData([
+            {
+              label: "No Data",
+              visits: 0,
+            },
+          ]);
+          return;
+        }
+        setChartData(
+          analytics.map((item) => ({
+            label: item.time,
+            visits: item.count,
+          }))
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchAnalytics();
+  }, [timeSelection, urlInfo]);
 
   return (
     <div className={styles.container}>
@@ -51,9 +100,13 @@ function URLAnalyticsModal({ user }) {
         <TextInput
           label={COMPONENT_DATA.inputs.name.label}
           value={urlInfo.name}
-          onChange={(e) => {
+          onChange={async (e) => {
             setUrlInfo({ ...urlInfo, name: e.target.value });
-            // update name in db
+            try {
+              await updateUrl(cookies.token, urlInfo);
+            } catch (err) {
+              console.log(err);
+            }
           }}
           size="md"
           compact
@@ -99,7 +152,9 @@ function URLAnalyticsModal({ user }) {
           color="primary"
           size="md"
           value={timeSelection}
-          onChange={(value) => setTimeSelection(value)}
+          onChange={(value) => {
+            setTimeSelection(value);
+          }}
         />
       </div>
       <div className={styles.anylytics}>
@@ -128,6 +183,14 @@ function URLAnalyticsModal({ user }) {
           rightIcon={<IconTrash />}
           size="md"
           variant="outline"
+          onClick={async () => {
+            try {
+              await deleteUrl(cookies.token, urlInfo.id);
+              router.push("/profile");
+            } catch (err) {
+              console.log(err);
+            }
+          }}
         >
           {COMPONENT_DATA.delete}
         </Button>

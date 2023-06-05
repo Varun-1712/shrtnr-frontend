@@ -111,18 +111,19 @@ export default function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const token = cookies.token;
-    if (token) {
-      async function getUser() {
-        try {
-          const data = await getUserData(token);
-          setUserData(data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-      getUser();
+    if (token && !user) {
+      setUser(token);
     }
-  }, [cookies]);
+  }, []);
+
+  const setUser = async (token) => {
+    try {
+      const data = await getUserData(token);
+      setUserData(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -222,7 +223,13 @@ export default function MyApp({ Component, pageProps }) {
         >
           <RouterTransition />
           <Header user={user} />
-          <Component {...pageProps} user={user} />
+          <Component
+            {...pageProps}
+            user={user}
+            updateUser={() => {
+              setUser(cookies.token);
+            }}
+          />
         </MantineProvider>
       </GoogleOAuthProvider>
     </>

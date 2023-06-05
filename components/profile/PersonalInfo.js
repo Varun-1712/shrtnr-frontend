@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import styles from "./PersonalInfo.module.css";
 import { Title, Text } from "@mantine/core";
 

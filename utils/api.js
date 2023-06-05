@@ -14,3 +14,5 @@ export const GET_URL = URL_URL + "get";
 export const DELETE_URL = URL_URL + "delete";
 export const UPDATE_URL = URL_URL + "update";
 export const GET_ALL_URLS = URL_URL + "getall";
+
+export const GET_ANAYLTICS = URL_URL + "get-analytics";

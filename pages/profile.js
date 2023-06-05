@@ -6,9 +6,10 @@ import URLAnalyticsModal from "@/components/modals/URLAnalyticsModal";
 import { useRouter } from "next/router";
 
 import { staticData } from "@/utils/staticData";
+import { useEffect } from "react";
 const PAGE_DATA = staticData.pages.profile;
 
-export default function Profile({ user }) {
+export default function Profile({ user, updateUser }) {
   const router = useRouter();
 
   const handleCloseModal = () => {
@@ -16,6 +17,9 @@ export default function Profile({ user }) {
       query: {},
     });
   };
+  useEffect(() => {
+    updateUser();
+  }, [router.query.modal]);
 
   return (
     <>

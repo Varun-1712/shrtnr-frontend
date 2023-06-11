@@ -39,12 +39,14 @@ function Header({ user }) {
       {userData ? (
         <Avatar
           src={userData.image}
-          alt={userData.firstName + " " + userData.lastName}
+          alt={userData?.firstName + " " + userData?.lastName}
           color="secondary"
           component={Link}
           href={"/profile"}
         >
-          {userData.image ? null : userData.firstName[0] + userData.lastName[0]}
+          {userData.image
+            ? null
+            : userData?.firstName[0] + userData?.lastName[0]}
         </Avatar>
       ) : (
         <ul className={styles.buttons}>

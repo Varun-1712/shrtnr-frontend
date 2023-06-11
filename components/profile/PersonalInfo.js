@@ -19,7 +19,7 @@ function PersonalInfo({ user }) {
       return;
     }
     setUserData({
-      name: user.firstName + " " + user.lastName,
+      name: user?.firstName + " " + user?.lastName,
       email: user.email,
       signedUpWith: user.signedUpWith,
     });

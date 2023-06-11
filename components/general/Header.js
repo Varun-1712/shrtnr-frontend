@@ -46,7 +46,8 @@ function Header({ user }) {
         >
           {userData.image
             ? null
-            : userData?.firstName[0] + userData?.lastName[0]}
+            : userData?.firstName[0] +
+              (userData.lastName ? userData.lastName[0] : "")}
         </Avatar>
       ) : (
         <ul className={styles.buttons}>

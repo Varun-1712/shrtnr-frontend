@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Shrtnr.tech</h1>
+  <h1>Shrtnr Frontend</h1>
 
 ![image](https://github.com/shrtnr-tech/frontend/assets/75676675/b649be45-a02d-41dc-8752-120c0c3947b5)
 
@@ -39,7 +39,7 @@
 
 ## Run this on your local
 ### Paste this line in your CLI 
-```
+```sh
 git clone https://github.com/shrtnr-tech/frontend.git
 cd frontend
 yarn install

@@ -1,38 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+  <h1>Shrtnr.tech</h1>
 
-## Getting Started
+![image](https://github.com/shrtnr-tech/frontend/assets/75676675/b649be45-a02d-41dc-8752-120c0c3947b5)
 
-First, run the development server:
+  <h3><a href="shrtnr.tech">Shrtnr.tech 🔗</a> &nbsp;&nbsp; <a href="https://www.figma.com/file/MDwnDeDUlsvOjJhh8HUBS0/URL-Shortener?type=design&node-id=0-1&t=nLSy9FLAwSVgrIly-0">Figma 🔗</a></h3>
+  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+</div>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Overview of Make-It
+* Shrtnr.tech provides users with the ability to generate shortened URLs for their online content & analytics feature that allows users to track the number of clicks received on each shortened link.
+## Technologies:
+* Next version: 13.0.1
+* axios version: 0.21.1
+* react-cookie version: 4.1.1
+* react-toastify version: 8.1.0
+* redux version: 4.0.5
+* @mui/material version: 5.2.7
+* Figma 
+## Screens shots:
+#### Landing Page
+![Screenshot 2023-06-12 at 10 55 36 PM](https://github.com/shrtnr-tech/frontend/assets/75676675/618f9ad1-92d4-49e6-96ba-41ebb6e7b448)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Logged In
+![Screenshot 2023-06-12 at 10 56 06 PM](https://github.com/shrtnr-tech/frontend/assets/75676675/27de0b2d-dc30-42bf-9e08-f922f3f0265b)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Abracadabra!
+![Screenshot 2023-06-12 at 10 57 00 PM](https://github.com/shrtnr-tech/frontend/assets/75676675/e2c08a23-1fcf-4bf1-8b1a-5a988efcaafb)
 
-## Learn More
+#### Profile Page
+![Screenshot 2023-06-12 at 11 00 20 PM](https://github.com/shrtnr-tech/frontend/assets/75676675/19f3361f-d690-4698-a53e-a342a16dc27b)
 
-To learn more about Next.js, take a look at the following resources:
+#### URL Analytics
+![Screenshot 2023-06-12 at 11 01 13 PM](https://github.com/shrtnr-tech/frontend/assets/75676675/378859a3-85c4-4f88-8c1a-816917a8be24)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Run this on your local
+### Paste this line in your CLI 
+### `git clone https://github.com/Makeit-S-Rank-Coders/frontend.git`
+### `cd frontend`
+### `yarn install`
+### `yarn run dev`
+Runs the app in the development mode.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Deploy on Vercel
+The page will reload if you make edits.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### To Connect with backend go to https://github.com/WeryZebra-Yue/shrtnr-backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## PHI (Φ)
+### Team members: 
+ * [Master Ayush](https://github.com/WeryZebra-Yue)  
+ * [Raj Varsani](https://github.com/RajVarsani)
+
+
+
+

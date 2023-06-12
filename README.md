@@ -10,7 +10,7 @@
 
 </div>
 
-## Overview of Make-It
+## Overview of Shrtnr
 * Shrtnr.tech provides users with the ability to generate shortened URLs for their online content & analytics feature that allows users to track the number of clicks received on each shortened link.
 ## Technologies:
 * Next version: 13.0.1

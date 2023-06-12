@@ -39,16 +39,18 @@
 
 ## Run this on your local
 ### Paste this line in your CLI 
-### `git clone https://github.com/Makeit-S-Rank-Coders/frontend.git`
-### `cd frontend`
-### `yarn install`
-### `yarn run dev`
+```
+git clone https://github.com/shrtnr-tech/frontend
+cd frontend
+yarn install
+yarn run dev
+```
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
 
-### To Connect with backend go to https://github.com/WeryZebra-Yue/shrtnr-backend
+### To Connect with backend go to https://github.com/shrtnr-tech/frontend.git
 
 ## PHI (Φ)
 ### Team members: 

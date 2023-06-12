@@ -40,7 +40,7 @@
 ## Run this on your local
 ### Paste this line in your CLI 
 ```
-git clone https://github.com/shrtnr-tech/frontend
+git clone https://github.com/shrtnr-tech/frontend.git
 cd frontend
 yarn install
 yarn run dev
@@ -50,7 +50,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
 
-### To Connect with backend go to https://github.com/shrtnr-tech/frontend.git
+#### To Connect with backend go to https://github.com/WeryZebra-Yue/shrtnr-backend
 
 ## PHI (Φ)
 ### Team members: 

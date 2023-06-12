@@ -46,7 +46,7 @@ yarn install
 yarn run dev
 ```
 Runs the app in the development mode.
-### To Connect with backend go to https://github.com/WeryZebra-Yue/shrtnr-backend
+### To Connect with backend go to https://github.com/shrtnr-tech/backend
 
 ## PHI (Φ)
 ### Team members: 

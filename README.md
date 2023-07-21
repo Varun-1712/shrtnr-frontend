@@ -3,7 +3,7 @@
 
 ![image](https://github.com/shrtnr-tech/frontend/assets/75676675/b649be45-a02d-41dc-8752-120c0c3947b5)
 
-  <h3><a href="shrtnr.tech">Shrtnr.tech 🔗</a> &nbsp;&nbsp; <a href="https://www.figma.com/file/MDwnDeDUlsvOjJhh8HUBS0/URL-Shortener?type=design&node-id=0-1&t=nLSy9FLAwSVgrIly-0">Figma 🔗</a></h3>
+  <h3><a href="https://www.shrtnr.tech/">Shrtnr.tech 🔗</a> &nbsp;&nbsp; <a href="https://www.figma.com/file/MDwnDeDUlsvOjJhh8HUBS0/URL-Shortener?type=design&node-id=0-1&t=nLSy9FLAwSVgrIly-0">Figma 🔗</a></h3>
   
 
 

@@ -50,7 +50,8 @@ Runs the app in the development mode.
 
 ## PHI (Φ)
 ### Team members: 
- * [Master Ayush](https://github.com/WeryZebra-Yue)  
+ * [Master Ayush](https://github.com/WeryZebra-Yue)
+ * [Varun Thummar](https://github.com/Varun-1712) 
  * [Raj Varsani](https://github.com/RajVarsani)
 
 
